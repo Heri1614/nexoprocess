@@ -12,22 +12,27 @@
             color: #333; 
             background-color: #ffffff;
             scroll-behavior: smooth; 
+            overflow-x: hidden;
         }
         
-        /* --- CABECERA CENTRADA Y MÁS GRANDE --- */
+        /* --- CABECERA CENTRADA Y GRANDE --- */
         header { 
             background-color: #000000; 
             color: white; 
             padding: 20px 5%; 
             display: flex; 
-            flex-direction: column; /* Centra los elementos verticalmente */
+            flex-direction: column; 
             align-items: center; 
             border-bottom: 3px solid #007bff;
         }
         .logo {
-            height: 100px; /* Logo casi el doble de grande */
+            height: 100px; 
             width: auto;
-            margin-bottom: 15px; /* Separación con el menú */
+            margin-bottom: 15px; 
+            transition: transform 0.3s ease;
+        }
+        .logo:hover {
+            transform: scale(1.05); /* Efecto de latido en el logo */
         }
         nav {
             display: flex;
@@ -44,100 +49,130 @@
         }
         nav a:hover { color: #007bff; }
         
-        /* --- SECCIÓN HERO --- */
+        /* --- SECCIÓN HERO (ANIMADA) --- */
         .hero { 
             background: linear-gradient(-45deg, #0d1b2a, #1b263b, #001524, #003049);
             background-size: 400% 400%;
-            animation: moverFondo 15s ease infinite;
-            padding: 80px 5%; 
+            animation: moverFondo 15s ease infinite; /* El fondo dinámico */
+            padding: 90px 5%; 
             text-align: center; 
             color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
         @keyframes moverFondo {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-        .hero h2 { font-size: 2.8rem; margin-bottom: 15px; }
+        .hero h2 { font-size: 2.8rem; margin-bottom: 15px; text-shadow: 0 4px 10px rgba(0,0,0,0.5); }
         .hero p { font-size: 1.1rem; max-width: 700px; margin: 0 auto 30px auto; color: #d8e2dc; }
+
+        /* --- CLASES PARA ANIMACIÓN AL SCROLL (FADE-IN) --- */
+        .oculto {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .mostrar {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         /* --- FILTROS --- */
         .seccion { padding: 60px 5%; }
-        .titulo-seccion { text-align: center; font-size: 2.2rem; color: #1b263b; margin-bottom: 30px; }
+        .titulo-seccion { text-align: center; font-size: 2.2rem; color: #1b263b; margin-bottom: 30px; font-weight: 800;}
         
         .contenedor-filtros {
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
             flex-wrap: wrap;
         }
         .btn-filtro {
             background-color: #e9ecef;
             color: #333;
             border: none;
-            padding: 8px 20px;
-            border-radius: 20px;
+            padding: 10px 25px;
+            border-radius: 25px;
             cursor: pointer;
             font-weight: bold;
             transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Profundidad en botones de filtro */
         }
         .btn-filtro.activo, .btn-filtro:hover {
             background-color: #007bff;
             color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
         }
 
-        /* --- TARJETAS --- */
+        /* --- TARJETAS CON EFECTO DE PROFUNDIDAD --- */
         .grid-tarjetas {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
             max-width: 1200px;
             margin: 0 auto;
         }
         .tarjeta {
             background: white;
-            border-radius: 8px;
-            padding: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-top: 4px solid #007bff; 
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* Sombra base profunda */
+            border-top: 5px solid #007bff; 
             display: flex;
             flex-direction: column;
-            transition: all 0.4s ease;
+            transition: all 0.4s ease; /* Transición suave para el hover */
         }
-        .tarjeta.ocultar {
-            display: none; /* Esta clase la controla el JavaScript para los filtros */
+        .tarjeta:hover {
+            transform: translateY(-10px); /* Efecto de levitación */
+            box-shadow: 0 15px 40px rgba(0, 123, 255, 0.15); /* Sombra azulada al flotar */
         }
-        .tarjeta h3 { color: #0d1b2a; margin-top: 0; }
+        
+        /* Clase especial para cuando el filtro esconde una tarjeta */
+        .escondido-por-filtro { display: none !important; }
+
+        .tarjeta h3 { color: #0d1b2a; margin-top: 0; font-size: 1.3rem; }
         .etiqueta {
             display: inline-block;
             background: #f8f9fa;
             border: 1px solid #dee2e6;
             color: #495057;
-            padding: 4px 10px;
-            border-radius: 12px;
+            padding: 6px 12px;
+            border-radius: 20px;
             font-size: 0.8rem;
             margin-right: 5px;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            transition: background 0.3s ease;
         }
-        .tarjeta p { color: #555; line-height: 1.5; font-size: 0.95rem; flex-grow: 1; }
+        .tarjeta:hover .etiqueta { background: #e2e8f0; } /* Interacción en la etiqueta al pasar el mouse */
+        
+        .tarjeta p { color: #555; line-height: 1.6; font-size: 0.95rem; flex-grow: 1; }
+        
         .btn-ver-mas {
-            margin-top: 15px;
+            margin-top: 20px;
             background-color: transparent;
             color: #007bff;
             border: 2px solid #007bff;
-            padding: 8px 15px;
+            padding: 10px 15px;
             text-align: center;
-            border-radius: 5px;
+            border-radius: 8px;
             text-decoration: none;
             font-weight: bold;
             transition: all 0.3s ease;
         }
-        .btn-ver-mas:hover { background-color: #007bff; color: white; }
+        .btn-ver-mas:hover { 
+            background-color: #007bff; 
+            color: white; 
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+        }
 
         /* --- FOOTER --- */
-        footer { background-color: #0d1b2a; color: white; text-align: center; padding: 40px 5%; }
-        .correo { color: #007bff; text-decoration: none; font-weight: bold; }
+        footer { background-color: #0d1b2a; color: white; text-align: center; padding: 50px 5%; }
+        .correo { color: #007bff; text-decoration: none; font-weight: bold; font-size: 1.2rem; }
+        .correo:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
@@ -158,9 +193,9 @@
     </section>
 
     <section class="seccion" id="portafolio">
-        <h2 class="titulo-seccion">Proyectos y Herramientas</h2>
+        <h2 class="titulo-seccion oculto">Proyectos y Herramientas</h2>
         
-        <div class="contenedor-filtros">
+        <div class="contenedor-filtros oculto">
             <button class="btn-filtro activo" data-filtro="todos">Todos</button>
             <button class="btn-filtro" data-filtro="excel">Excel</button>
             <button class="btn-filtro" data-filtro="sharepoint">SharePoint</button>
@@ -170,7 +205,7 @@
 
         <div class="grid-tarjetas">
             
-            <div class="tarjeta" data-categoria="sharepoint excel">
+            <div class="tarjeta oculto" data-categoria="sharepoint excel">
                 <h3>Sistema de Acciones Gemba</h3>
                 <div>
                     <span class="etiqueta">SharePoint</span>
@@ -180,7 +215,7 @@
                 <a href="#" class="btn-ver-mas">Ver detalles del proyecto</a>
             </div>
 
-            <div class="tarjeta" data-categoria="excel">
+            <div class="tarjeta oculto" data-categoria="excel">
                 <h3>Dashboard de Inventarios</h3>
                 <div>
                     <span class="etiqueta">Excel</span>
@@ -190,7 +225,7 @@
                 <a href="#" class="btn-ver-mas">Ver detalles del proyecto</a>
             </div>
             
-            <div class="tarjeta" data-categoria="miniapps web">
+            <div class="tarjeta oculto" data-categoria="miniapps web">
                 <h3>Cotizador Web Integrado</h3>
                 <div>
                     <span class="etiqueta">Web</span>
@@ -204,17 +239,17 @@
     </section>
 
     <footer id="contacto">
-        <h3>¿Necesitas automatizar un proceso?</h3>
-        <p>Escríbeme a: <a href="mailto:hola@nexoprocess.com" class="correo">hola@nexoprocess.com</a></p>
+        <h3 class="oculto">¿Necesitas automatizar un proceso?</h3>
+        <p class="oculto">Escríbeme a: <a href="mailto:hola@nexoprocess.com" class="correo">hola@nexoprocess.com</a></p>
     </footer>
 
     <script>
+        // Lógica de los Filtros
         const botonesFiltro = document.querySelectorAll('.btn-filtro');
         const tarjetas = document.querySelectorAll('.tarjeta');
 
         botonesFiltro.forEach(boton => {
             boton.addEventListener('click', () => {
-                // Quita la clase 'activo' de todos los botones y se la pone al que clickeaste
                 botonesFiltro.forEach(btn => btn.classList.remove('activo'));
                 boton.classList.add('activo');
 
@@ -224,13 +259,27 @@
                     const categorias = tarjeta.getAttribute('data-categoria').split(' ');
                     
                     if (filtro === 'todos' || categorias.includes(filtro)) {
-                        tarjeta.classList.remove('ocultar');
+                        tarjeta.classList.remove('escondido-por-filtro');
                     } else {
-                        tarjeta.classList.add('ocultar');
+                        tarjeta.classList.add('escondido-por-filtro');
                     }
                 });
             });
         });
+
+        // Lógica de Animación al Scroll (Fade-in)
+        const observador = new IntersectionObserver((entradas) => {
+            entradas.forEach((entrada) => {
+                if (entrada.isIntersecting) {
+                    entrada.target.classList.add('mostrar');
+                }
+            });
+        }, {
+            threshold: 0.1 
+        });
+
+        const elementosOcultos = document.querySelectorAll('.oculto');
+        elementosOcultos.forEach((el) => observador.observe(el));
     </script>
 </body>
 </html>
