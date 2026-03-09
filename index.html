@@ -5,22 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NexoProcess | Automatización y Eficiencia</title>
     <style>
-        /* Estilos visuales (CSS) */
+        /* Estilos visuales generales (CSS) */
         body { 
             margin: 0; 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             color: #333; 
+            background-color: #ffffff;
         }
+        
+        /* --- CABECERA --- */
         header { 
-            background-color: #000000; /* Fondo negro para que se funda con tu logo */
+            background-color: #000000; 
             color: white; 
             padding: 10px 5%; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
         .logo {
-            height: 60px; /* Ajusta este número si quieres el logo más grande o chico */
+            height: 60px; 
             width: auto;
         }
         nav a { 
@@ -30,8 +36,9 @@
             font-weight: 500; 
             transition: color 0.3s ease;
         }
-        nav a:hover { color: #007bff; /* Azul similar al de tu logo */ }
+        nav a:hover { color: #007bff; }
         
+        /* --- SECCIÓN HERO (BIENVENIDA) --- */
         .hero { 
             background-color: #f4f6f9; 
             padding: 100px 5%; 
@@ -50,22 +57,73 @@
             line-height: 1.6;
         }
         .btn { 
-            background-color: #007bff; /* Azul del logo */
+            background-color: #007bff; 
             color: white; 
             padding: 15px 30px; 
             text-decoration: none; 
             border-radius: 6px; 
             font-weight: bold; 
             font-size: 1.1rem; 
+            display: inline-block;
             transition: background-color 0.3s ease;
         }
         .btn:hover { background-color: #0056b3; }
+
+        /* --- SECCIÓN PORTAFOLIO --- */
+        .seccion { 
+            padding: 80px 5%; 
+        }
+        .titulo-seccion { 
+            text-align: center; 
+            font-size: 2.2rem; 
+            color: #1b263b; 
+            margin-bottom: 50px; 
+        }
+        .grid-portafolio {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .tarjeta {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            border-top: 4px solid #007bff; /* Línea azul decorativa arriba */
+        }
+        .tarjeta:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        .tarjeta h3 { 
+            color: #0d1b2a; 
+            margin-top: 0; 
+        }
+        .etiqueta {
+            display: inline-block;
+            background: #e9ecef;
+            color: #495057;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            margin-right: 5px;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        .tarjeta p {
+            color: #555;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <img src="LogoNexus.png" alt="NexoProcess Logo" class="logo">
+        <img src="LogoNexus.jpg" alt="NexoProcess Logo" class="logo">
         <nav>
             <a href="#inicio">Inicio</a>
             <a href="#portafolio">Portafolio</a>
@@ -77,7 +135,36 @@
     <section class="hero" id="inicio">
         <h2>Automatización y eficiencia para tus procesos operativos</h2>
         <p>Soluciones a medida en Excel, SharePoint y Microsoft Forms para potenciar el rendimiento y eliminar las rutinas manuales de tu empresa.</p>
-        <a href="#plantillas" class="btn">Explorar Soluciones</a>
+        <a href="#portafolio" class="btn">Explorar Soluciones</a>
+    </section>
+
+    <section class="seccion" id="portafolio">
+        <h2 class="titulo-seccion">Proyectos Destacados</h2>
+        <div class="grid-portafolio">
+            
+            <div class="tarjeta">
+                <h3>Sistema de Acciones Gemba</h3>
+                <span class="etiqueta">MS Forms</span>
+                <span class="etiqueta">SharePoint</span>
+                <span class="etiqueta">Excel Automatizado</span>
+                <p>Desarrollo de un flujo automatizado para el levantamiento de acciones operativas en piso. Los datos se capturan vía web, alimentan una base de SharePoint y actualizan reportes en Excel en tiempo real para la toma de decisiones.</p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>Dashboard de Inventarios</h3>
+                <span class="etiqueta">Excel Avanzado</span>
+                <span class="etiqueta">Power Query</span>
+                <p>Plantilla dinámica diseñada para controlar entradas, salidas y puntos de reorden de materiales, eliminando discrepancias manuales y generando alertas automáticas de stock bajo.</p>
+            </div>
+            
+            <div class="tarjeta">
+                <h3>Automatización de Reportes</h3>
+                <span class="etiqueta">Macros (VBA)</span>
+                <span class="etiqueta">Análisis de Datos</span>
+                <p>Reducción del tiempo de procesamiento de datos mensuales de 4 horas a 5 minutos mediante la programación de macros a medida para la consolidación de información interdepartamental.</p>
+            </div>
+
+        </div>
     </section>
 
 </body>
