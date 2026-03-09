@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NexoProcess | Automatización y Eficiencia</title>
     <style>
-        /* Estilos visuales generales (CSS) */
+        /* --- ESTILOS GENERALES --- */
         body { 
             margin: 0; 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             color: #333; 
             background-color: #ffffff;
+            scroll-behavior: smooth; /* Para que el menú baje suavemente */
         }
         
         /* --- CABECERA --- */
@@ -69,9 +70,12 @@
         }
         .btn:hover { background-color: #0056b3; }
 
-        /* --- SECCIÓN PORTAFOLIO --- */
+        /* --- SECCIONES (PORTAFOLIO Y PLANTILLAS) --- */
         .seccion { 
             padding: 80px 5%; 
+        }
+        .fondo-gris {
+            background-color: #f8f9fa;
         }
         .titulo-seccion { 
             text-align: center; 
@@ -79,7 +83,7 @@
             color: #1b263b; 
             margin-bottom: 50px; 
         }
-        .grid-portafolio {
+        .grid-tarjetas {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
@@ -92,7 +96,9 @@
             padding: 25px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             transition: transform 0.3s ease;
-            border-top: 4px solid #007bff; /* Línea azul decorativa arriba */
+            border-top: 4px solid #007bff; 
+            display: flex;
+            flex-direction: column;
         }
         .tarjeta:hover { 
             transform: translateY(-5px); 
@@ -117,13 +123,57 @@
             color: #555;
             line-height: 1.5;
             font-size: 0.95rem;
+            flex-grow: 1; /* Hace que todas las tarjetas midan lo mismo */
+        }
+
+        /* --- ESTILOS ESPECÍFICOS TIENDA --- */
+        .precio {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #1b263b;
+            margin: 15px 0;
+            text-align: center;
+        }
+        .btn-comprar {
+            background-color: #28a745; /* Verde para ventas */
+            color: white;
+            text-align: center;
+            padding: 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            display: block;
+        }
+        .btn-comprar:hover { background-color: #218838; }
+
+        /* --- PIE DE PÁGINA (FOOTER) --- */
+        footer {
+            background-color: #0d1b2a;
+            color: white;
+            text-align: center;
+            padding: 50px 5%;
+        }
+        footer h3 { margin-top: 0; }
+        footer p { color: #a0aab2; margin-bottom: 20px; }
+        .correo {
+            font-size: 1.2rem;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .correo:hover { text-decoration: underline; }
+        .copyright {
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: #6c757d;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <img src="LogoNexus.png" alt="NexoProcess Logo" class="logo">
+        <img src="LogoNexus.jpg" alt="NexoProcess Logo" class="logo">
         <nav>
             <a href="#inicio">Inicio</a>
             <a href="#portafolio">Portafolio</a>
@@ -140,32 +190,76 @@
 
     <section class="seccion" id="portafolio">
         <h2 class="titulo-seccion">Proyectos Destacados</h2>
-        <div class="grid-portafolio">
+        <div class="grid-tarjetas">
             
             <div class="tarjeta">
                 <h3>Sistema de Acciones Gemba</h3>
-                <span class="etiqueta">MS Forms</span>
-                <span class="etiqueta">SharePoint</span>
-                <span class="etiqueta">Excel Automatizado</span>
+                <div>
+                    <span class="etiqueta">MS Forms</span>
+                    <span class="etiqueta">SharePoint</span>
+                    <span class="etiqueta">Excel Automatizado</span>
+                </div>
                 <p>Desarrollo de un flujo automatizado para el levantamiento de acciones operativas en piso. Los datos se capturan vía web, alimentan una base de SharePoint y actualizan reportes en Excel en tiempo real para la toma de decisiones.</p>
             </div>
 
             <div class="tarjeta">
                 <h3>Dashboard de Inventarios</h3>
-                <span class="etiqueta">Excel Avanzado</span>
-                <span class="etiqueta">Power Query</span>
+                <div>
+                    <span class="etiqueta">Excel Avanzado</span>
+                    <span class="etiqueta">Power Query</span>
+                </div>
                 <p>Plantilla dinámica diseñada para controlar entradas, salidas y puntos de reorden de materiales, eliminando discrepancias manuales y generando alertas automáticas de stock bajo.</p>
             </div>
             
             <div class="tarjeta">
                 <h3>Automatización de Reportes</h3>
-                <span class="etiqueta">Macros (VBA)</span>
-                <span class="etiqueta">Análisis de Datos</span>
+                <div>
+                    <span class="etiqueta">Macros (VBA)</span>
+                    <span class="etiqueta">Análisis de Datos</span>
+                </div>
                 <p>Reducción del tiempo de procesamiento de datos mensuales de 4 horas a 5 minutos mediante la programación de macros a medida para la consolidación de información interdepartamental.</p>
             </div>
 
         </div>
     </section>
+
+    <section class="seccion fondo-gris" id="plantillas">
+        <h2 class="titulo-seccion">Plantillas Listas para Usar</h2>
+        <div class="grid-tarjetas">
+            
+            <div class="tarjeta">
+                <h3>Plantilla Control Gemba</h3>
+                <p>El sistema pre-configurado de Excel, Forms y SharePoint listo para implementar en tu empresa. Incluye guía de instalación paso a paso.</p>
+                <div class="precio">$25.00 USD</div>
+                <a href="#comprar" class="btn-comprar">Comprar ahora</a>
+            </div>
+
+            <div class="tarjeta">
+                <h3>Cotizador Inteligente</h3>
+                <p>Plantilla de Excel automatizada para generar cotizaciones en PDF con un clic, calculando márgenes de ganancia y base de datos de clientes.</p>
+                <div class="precio">$15.00 USD</div>
+                <a href="#comprar" class="btn-comprar">Comprar ahora</a>
+            </div>
+
+            <div class="tarjeta">
+                <h3>Tracker de Proyectos</h3>
+                <p>Diagrama de Gantt dinámico en Excel para dar seguimiento a las tareas de tu equipo operativo, fechas límite y responsables.</p>
+                <div class="precio">$10.00 USD</div>
+                <a href="#comprar" class="btn-comprar">Comprar ahora</a>
+            </div>
+
+        </div>
+    </section>
+
+    <footer id="contacto">
+        <h3>¿Necesitas una solución a la medida?</h3>
+        <p>Cuéntame sobre los procesos manuales que te quitan tiempo y construyamos algo increíble.</p>
+        <a href="mailto:hola@nexoprocess.com" class="correo">hola@nexoprocess.com</a>
+        
+        <div class="copyright">
+            &copy; 2026 NexoProcess. Todos los derechos reservados.
+        </div>
+    </footer>
 
 </body>
 </html>
