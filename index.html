@@ -11,24 +11,30 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             color: #333; 
             background-color: #ffffff;
-            scroll-behavior: smooth; /* Para que el menú baje suavemente */
+            scroll-behavior: smooth; 
+            overflow-x: hidden;
         }
         
         /* --- CABECERA --- */
         header { 
             background-color: #000000; 
             color: white; 
-            padding: 10px 5%; 
+            padding: 12px 5%; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
         .logo {
-            height: 60px; 
+            height: 55px; /* Ajustado para el .png */
             width: auto;
+            transition: transform 0.3s ease;
+        }
+        .logo:hover {
+            transform: scale(1.05); /* Pequeño latido al pasar el ratón */
         }
         nav a { 
             color: #e0e0e0; 
@@ -36,138 +42,174 @@
             margin-left: 25px; 
             font-weight: 500; 
             transition: color 0.3s ease;
+            font-size: 0.95rem;
         }
         nav a:hover { color: #007bff; }
         
-        /* --- SECCIÓN HERO (BIENVENIDA) --- */
+        /* --- SECCIÓN HERO (ANIMADA) --- */
         .hero { 
-            background-color: #f4f6f9; 
-            padding: 100px 5%; 
+            /* Fondo con degradado animado */
+            background: linear-gradient(-45deg, #0d1b2a, #1b263b, #001524, #003049);
+            background-size: 400% 400%;
+            animation: moverFondo 15s ease infinite;
+            padding: 120px 5%; 
             text-align: center; 
+            color: white;
+            border-bottom: 5px solid #007bff;
+        }
+        @keyframes moverFondo {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         .hero h2 { 
-            font-size: 2.8rem; 
-            color: #1b263b; 
+            font-size: 3.2rem; 
             margin-bottom: 20px; 
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
         .hero p { 
             font-size: 1.2rem; 
-            max-width: 650px; 
+            max-width: 700px; 
             margin: 0 auto 40px auto; 
-            color: #555; 
+            color: #d8e2dc; 
             line-height: 1.6;
         }
         .btn { 
             background-color: #007bff; 
             color: white; 
-            padding: 15px 30px; 
+            padding: 16px 35px; 
             text-decoration: none; 
-            border-radius: 6px; 
+            border-radius: 30px; /* Botón más moderno y redondeado */
             font-weight: bold; 
             font-size: 1.1rem; 
             display: inline-block;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
         }
-        .btn:hover { background-color: #0056b3; }
+        .btn:hover { 
+            background-color: #0056b3; 
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.6);
+        }
+
+        /* --- CLASES PARA ANIMACIÓN AL HACER SCROLL --- */
+        .oculto {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .mostrar {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         /* --- SECCIONES (PORTAFOLIO Y PLANTILLAS) --- */
-        .seccion { 
-            padding: 80px 5%; 
-        }
-        .fondo-gris {
-            background-color: #f8f9fa;
-        }
+        .seccion { padding: 90px 5%; }
+        .fondo-gris { background-color: #f8f9fa; }
         .titulo-seccion { 
             text-align: center; 
-            font-size: 2.2rem; 
+            font-size: 2.5rem; 
             color: #1b263b; 
-            margin-bottom: 50px; 
+            margin-bottom: 60px; 
+            font-weight: 800;
         }
+        
         .grid-tarjetas {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
             max-width: 1200px;
             margin: 0 auto;
         }
         .tarjeta {
             background: white;
-            border-radius: 8px;
-            padding: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-            border-top: 4px solid #007bff; 
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            border-top: 5px solid #007bff; 
             display: flex;
             flex-direction: column;
         }
         .tarjeta:hover { 
-            transform: translateY(-5px); 
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transform: translateY(-10px); 
+            box-shadow: 0 15px 40px rgba(0, 123, 255, 0.15);
         }
-        .tarjeta h3 { 
-            color: #0d1b2a; 
-            margin-top: 0; 
-        }
+        .tarjeta h3 { color: #0d1b2a; margin-top: 0; font-size: 1.4rem;}
+        
+        .etiquetas-container { margin-bottom: 20px; }
         .etiqueta {
             display: inline-block;
             background: #e9ecef;
             color: #495057;
-            padding: 5px 10px;
-            border-radius: 15px;
+            padding: 6px 12px;
+            border-radius: 20px;
             font-size: 0.85rem;
             margin-right: 5px;
-            margin-bottom: 15px;
-            font-weight: 500;
+            margin-bottom: 8px;
+            font-weight: 600;
+            transition: background 0.3s ease;
         }
+        .tarjeta:hover .etiqueta { background: #dce4eb; }
+        
         .tarjeta p {
             color: #555;
-            line-height: 1.5;
-            font-size: 0.95rem;
-            flex-grow: 1; /* Hace que todas las tarjetas midan lo mismo */
+            line-height: 1.6;
+            font-size: 1rem;
+            flex-grow: 1; 
         }
 
         /* --- ESTILOS ESPECÍFICOS TIENDA --- */
         .precio {
-            font-size: 1.8rem;
-            font-weight: bold;
+            font-size: 2rem;
+            font-weight: 800;
             color: #1b263b;
-            margin: 15px 0;
+            margin: 20px 0;
             text-align: center;
         }
         .btn-comprar {
-            background-color: #28a745; /* Verde para ventas */
+            background-color: #28a745; 
             color: white;
             text-align: center;
-            padding: 12px;
-            border-radius: 6px;
+            padding: 14px;
+            border-radius: 8px;
             text-decoration: none;
             font-weight: bold;
-            transition: background-color 0.3s ease;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
             display: block;
+            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
         }
-        .btn-comprar:hover { background-color: #218838; }
+        .btn-comprar:hover { 
+            background-color: #218838; 
+            transform: scale(1.02);
+            box-shadow: 0 6px 15px rgba(40, 167, 69, 0.4);
+        }
 
         /* --- PIE DE PÁGINA (FOOTER) --- */
         footer {
             background-color: #0d1b2a;
             color: white;
             text-align: center;
-            padding: 50px 5%;
+            padding: 60px 5%;
         }
-        footer h3 { margin-top: 0; }
-        footer p { color: #a0aab2; margin-bottom: 20px; }
+        footer h3 { margin-top: 0; font-size: 1.8rem; }
+        footer p { color: #a0aab2; margin-bottom: 30px; font-size: 1.1rem; }
         .correo {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: #007bff;
             text-decoration: none;
             font-weight: bold;
+            padding: 10px 20px;
+            border: 2px solid #007bff;
+            border-radius: 30px;
+            transition: all 0.3s ease;
         }
-        .correo:hover { text-decoration: underline; }
-        .copyright {
-            margin-top: 40px;
-            font-size: 0.9rem;
-            color: #6c757d;
+        .correo:hover { 
+            background-color: #007bff;
+            color: white; 
         }
+        .copyright { margin-top: 50px; font-size: 0.9rem; color: #6c757d; }
     </style>
 </head>
 <body>
@@ -183,83 +225,97 @@
     </header>
 
     <section class="hero" id="inicio">
-        <h2>Automatización y eficiencia para tus procesos operativos</h2>
+        <h2>Automatización y eficiencia para tus procesos</h2>
         <p>Soluciones a medida en Excel, SharePoint y Microsoft Forms para potenciar el rendimiento y eliminar las rutinas manuales de tu empresa.</p>
         <a href="#portafolio" class="btn">Explorar Soluciones</a>
     </section>
 
     <section class="seccion" id="portafolio">
-        <h2 class="titulo-seccion">Proyectos Destacados</h2>
+        <h2 class="titulo-seccion oculto">Proyectos Destacados</h2>
         <div class="grid-tarjetas">
             
-            <div class="tarjeta">
+            <div class="tarjeta oculto">
                 <h3>Sistema de Acciones Gemba</h3>
-                <div>
+                <div class="etiquetas-container">
                     <span class="etiqueta">MS Forms</span>
                     <span class="etiqueta">SharePoint</span>
-                    <span class="etiqueta">Excel Automatizado</span>
+                    <span class="etiqueta">Excel Auto</span>
                 </div>
-                <p>Desarrollo de un flujo automatizado para el levantamiento de acciones operativas en piso. Los datos se capturan vía web, alimentan una base de SharePoint y actualizan reportes en Excel en tiempo real para la toma de decisiones.</p>
+                <p>Flujo automatizado para el levantamiento de acciones operativas en piso. Los datos se capturan vía web, alimentan SharePoint y actualizan reportes en Excel en tiempo real.</p>
             </div>
 
-            <div class="tarjeta">
+            <div class="tarjeta oculto">
                 <h3>Dashboard de Inventarios</h3>
-                <div>
+                <div class="etiquetas-container">
                     <span class="etiqueta">Excel Avanzado</span>
                     <span class="etiqueta">Power Query</span>
                 </div>
-                <p>Plantilla dinámica diseñada para controlar entradas, salidas y puntos de reorden de materiales, eliminando discrepancias manuales y generando alertas automáticas de stock bajo.</p>
+                <p>Plantilla dinámica diseñada para controlar entradas, salidas y puntos de reorden de materiales, generando alertas automáticas de stock bajo.</p>
             </div>
             
-            <div class="tarjeta">
+            <div class="tarjeta oculto">
                 <h3>Automatización de Reportes</h3>
-                <div>
+                <div class="etiquetas-container">
                     <span class="etiqueta">Macros (VBA)</span>
-                    <span class="etiqueta">Análisis de Datos</span>
+                    <span class="etiqueta">Análisis</span>
                 </div>
-                <p>Reducción del tiempo de procesamiento de datos mensuales de 4 horas a 5 minutos mediante la programación de macros a medida para la consolidación de información interdepartamental.</p>
+                <p>Reducción del tiempo de procesamiento de datos mensuales de 4 horas a 5 minutos mediante macros a medida para la consolidación interdepartamental.</p>
             </div>
 
         </div>
     </section>
 
     <section class="seccion fondo-gris" id="plantillas">
-        <h2 class="titulo-seccion">Plantillas Listas para Usar</h2>
+        <h2 class="titulo-seccion oculto">Plantillas Listas para Usar</h2>
         <div class="grid-tarjetas">
             
-            <div class="tarjeta">
+            <div class="tarjeta oculto">
                 <h3>Plantilla Control Gemba</h3>
                 <p>El sistema pre-configurado de Excel, Forms y SharePoint listo para implementar en tu empresa. Incluye guía de instalación paso a paso.</p>
-                <div class="precio">$25.00 USD</div>
-                <a href="#comprar" class="btn-comprar">Comprar ahora</a>
+                <div class="precio">$25.00</div>
+                <a href="#plantillas" class="btn-comprar">Próximamente</a>
             </div>
 
-            <div class="tarjeta">
+            <div class="tarjeta oculto">
                 <h3>Cotizador Inteligente</h3>
-                <p>Plantilla de Excel automatizada para generar cotizaciones en PDF con un clic, calculando márgenes de ganancia y base de datos de clientes.</p>
-                <div class="precio">$15.00 USD</div>
-                <a href="#comprar" class="btn-comprar">Comprar ahora</a>
+                <p>Plantilla automatizada para generar cotizaciones en PDF con un clic, calculando márgenes de ganancia y base de datos de clientes.</p>
+                <div class="precio">$15.00</div>
+                <a href="#plantillas" class="btn-comprar">Próximamente</a>
             </div>
 
-            <div class="tarjeta">
+            <div class="tarjeta oculto">
                 <h3>Tracker de Proyectos</h3>
                 <p>Diagrama de Gantt dinámico en Excel para dar seguimiento a las tareas de tu equipo operativo, fechas límite y responsables.</p>
-                <div class="precio">$10.00 USD</div>
-                <a href="#comprar" class="btn-comprar">Comprar ahora</a>
+                <div class="precio">$10.00</div>
+                <a href="#plantillas" class="btn-comprar">Próximamente</a>
             </div>
 
         </div>
     </section>
 
     <footer id="contacto">
-        <h3>¿Necesitas una solución a la medida?</h3>
-        <p>Cuéntame sobre los procesos manuales que te quitan tiempo y construyamos algo increíble.</p>
-        <a href="mailto:hola@nexoprocess.com" class="correo">hola@nexoprocess.com</a>
+        <h3 class="oculto">¿Necesitas una solución a la medida?</h3>
+        <p class="oculto">Cuéntame sobre los procesos manuales que te quitan tiempo y construyamos algo increíble.</p>
+        <a href="mailto:hola@nexoprocess.com" class="correo oculto">hola@nexoprocess.com</a>
         
         <div class="copyright">
             &copy; 2026 NexoProcess. Todos los derechos reservados.
         </div>
     </footer>
 
+    <script>
+        const observador = new IntersectionObserver((entradas) => {
+            entradas.forEach((entrada) => {
+                if (entrada.isIntersecting) {
+                    entrada.target.classList.add('mostrar');
+                }
+            });
+        }, {
+            threshold: 0.1 /* Se activa cuando el 10% del elemento es visible */
+        });
+
+        const elementosOcultos = document.querySelectorAll('.oculto');
+        elementosOcultos.forEach((el) => observador.observe(el));
+    </script>
 </body>
 </html>
