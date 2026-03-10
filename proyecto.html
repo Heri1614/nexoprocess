@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="titulo-pestana">Cargando Proyecto...</title>
+    <style>
+        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333; background-color: #f4f6f9; line-height: 1.6; }
+        header { background-color: #000000; color: white; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #007bff; }
+        .logo { height: 60px; width: auto; }
+        .btn-volver { color: #e0e0e0; text-decoration: none; font-weight: bold; display: flex; align-items: center; gap: 8px; transition: color 0.3s ease; }
+        .btn-volver:hover { color: #007bff; }
+        .contenedor-proyecto { max-width: 1000px; margin: 50px auto; background: white; border-radius: 12px; padding: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .proyecto-header { text-align: center; margin-bottom: 40px; }
+        .proyecto-header h1 { font-size: 2.5rem; color: #1b263b; margin-bottom: 15px; }
+        .etiqueta { display: inline-block; background: #e9ecef; color: #495057; padding: 6px 15px; border-radius: 20px; font-size: 0.9rem; margin: 0 5px; font-weight: 600; margin-bottom: 10px;}
+        .media-placeholder { width: 100%; height: 450px; background-color: #2c3e50; border-radius: 8px; display: flex; justify-content: center; align-items: center; color: #7f8c8d; font-size: 1.2rem; font-weight: bold; margin-bottom: 50px; border: 2px dashed #7f8c8d; text-align: center; padding: 20px;}
+        .caso-estudio { display: grid; grid-template-columns: 1fr; gap: 30px; }
+        @media (min-width: 768px) { .caso-estudio { grid-template-columns: 1fr 1fr 1fr; } }
+        .bloque-texto h3 { color: #007bff; font-size: 1.3rem; border-bottom: 2px solid #e9ecef; padding-bottom: 10px; margin-bottom: 15px; }
+        .bloque-texto p { color: #555; font-size: 1.05rem; }
+        footer { background-color: #0d1b2a; color: white; text-align: center; padding: 30px 5%; margin-top: 50px; }
+        
+        /* Clase para ocultar el contenido si hay error */
+        .oculto { display: none; }
+        .mensaje-error { text-align: center; padding: 50px; font-size: 1.5rem; color: red; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="LogoNexus.png" alt="NexoProcess Logo" class="logo">
+        <a href="index.html" class="btn-volver">← Volver al Portafolio</a>
+    </header>
+
+    <div id="mensaje-error" class="mensaje-error oculto">
+        El proyecto que buscas no existe.
+    </div>
+
+    <div id="contenido-proyecto" class="contenedor-proyecto">
+        <div class="proyecto-header">
+            <h1 id="titulo-proyecto"></h1>
+            <div id="contenedor-etiquetas"></div>
+        </div>
+
+        <div id="video-proyecto" class="media-placeholder"></div>
+
+        <div class="caso-estudio">
+            <div class="bloque-texto">
+                <h3>El Problema</h3>
+                <p id="texto-problema"></p>
+            </div>
+            <div class="bloque-texto">
+                <h3>La Solución</h3>
+                <p id="texto-solucion"></p>
+            </div>
+            <div class="bloque-texto">
+                <h3>El Resultado</h3>
+                <p id="texto-resultado"></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 NexoProcess. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="datos.js"></script>
+
+    <script>
+        // 1. Leemos la URL para saber qué proyecto pidió el usuario (ej. ?id=gemba)
+        const parametrosURL = new URLSearchParams(window.location.search);
+        const idProyecto = parametrosURL.get('id');
+
+        // 2. Buscamos ese ID en nuestra base de datos
+        const datosDelProyecto = baseDeDatos[idProyecto];
+
+        // 3. Verificamos si el proyecto existe
+        if (datosDelProyecto) {
+            
+            // 4. Si existe, inyectamos los textos en las etiquetas correspondientes usando su ID
+            document.getElementById('titulo-pestana').innerText = datosDelProyecto.titulo + " | NexoProcess";
+            document.getElementById('titulo-proyecto').innerText = datosDelProyecto.titulo;
+            document.getElementById('video-proyecto').innerText = datosDelProyecto.videoMockup;
+            document.getElementById('texto-problema').innerText = datosDelProyecto.problema;
+            document.getElementById('texto-solucion').innerText = datosDelProyecto.solucion;
+            document.getElementById('texto-resultado').innerText = datosDelProyecto.resultado;
+
+            // 5. Las etiquetas son una lista, así que las recorremos una por una para crearlas visualmente
+            const contenedorEtiquetas = document.getElementById('contenedor-etiquetas');
+            datosDelProyecto.etiquetas.forEach(etiqueta => {
+                const span = document.createElement('span'); // Creamos un elemento <span>
+                span.className = 'etiqueta'; // Le damos la clase visual que ya diseñamos
+                span.innerText = etiqueta; // Le metemos el texto de la etiqueta
+                contenedorEtiquetas.appendChild(span); // Lo pegamos en la página
+            });
+
+        } else {
+            // 6. Si alguien escribe un ID falso o entra sin ID, ocultamos el molde y mostramos error
+            document.getElementById('contenido-proyecto').classList.add('oculto');
+            document.getElementById('mensaje-error').classList.remove('oculto');
+        }
+    </script>
+</body>
+</html>
