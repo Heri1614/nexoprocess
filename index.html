@@ -32,7 +32,7 @@
             transition: transform 0.3s ease;
         }
         .logo:hover {
-            transform: scale(1.05); /* Efecto de latido en el logo */
+            transform: scale(1.05);
         }
         nav {
             display: flex;
@@ -53,7 +53,7 @@
         .hero { 
             background: linear-gradient(-45deg, #0d1b2a, #1b263b, #001524, #003049);
             background-size: 400% 400%;
-            animation: moverFondo 15s ease infinite; /* El fondo dinámico */
+            animation: moverFondo 15s ease infinite; 
             padding: 90px 5%; 
             text-align: center; 
             color: white;
@@ -98,7 +98,7 @@
             cursor: pointer;
             font-weight: bold;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Profundidad en botones de filtro */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
         }
         .btn-filtro.activo, .btn-filtro:hover {
             background-color: #007bff;
@@ -119,18 +119,17 @@
             background: white;
             border-radius: 12px;
             padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* Sombra base profunda */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
             border-top: 5px solid #007bff; 
             display: flex;
             flex-direction: column;
-            transition: all 0.4s ease; /* Transición suave para el hover */
+            transition: all 0.4s ease; 
         }
         .tarjeta:hover {
-            transform: translateY(-10px); /* Efecto de levitación */
-            box-shadow: 0 15px 40px rgba(0, 123, 255, 0.15); /* Sombra azulada al flotar */
+            transform: translateY(-10px); 
+            box-shadow: 0 15px 40px rgba(0, 123, 255, 0.15); 
         }
         
-        /* Clase especial para cuando el filtro esconde una tarjeta */
         .escondido-por-filtro { display: none !important; }
 
         .tarjeta h3 { color: #0d1b2a; margin-top: 0; font-size: 1.3rem; }
@@ -147,7 +146,7 @@
             font-weight: 600;
             transition: background 0.3s ease;
         }
-        .tarjeta:hover .etiqueta { background: #e2e8f0; } /* Interacción en la etiqueta al pasar el mouse */
+        .tarjeta:hover .etiqueta { background: #e2e8f0; } 
         
         .tarjeta p { color: #555; line-height: 1.6; font-size: 0.95rem; flex-grow: 1; }
         
@@ -212,7 +211,7 @@
                     <span class="etiqueta">Excel</span>
                 </div>
                 <p>Flujo automatizado para acciones operativas en piso. Captura vía web, almacena en SharePoint y actualiza reportes en Excel.</p>
-                <a href="proyecto-gemba.html" class="btn-ver-mas">Ver detalles del proyecto</a>
+                <a href="proyecto.html?id=gemba" class="btn-ver-mas">Ver detalles del proyecto</a>
             </div>
 
             <div class="tarjeta oculto" data-categoria="excel">
@@ -222,7 +221,7 @@
                     <span class="etiqueta">Power Query</span>
                 </div>
                 <p>Plantilla dinámica para control de materiales, generando alertas automáticas de stock bajo y reorden.</p>
-                <a href="#" class="btn-ver-mas">Ver detalles del proyecto</a>
+                <a href="proyecto.html?id=inventarios" class="btn-ver-mas">Ver detalles del proyecto</a>
             </div>
             
             <div class="tarjeta oculto" data-categoria="miniapps web">
@@ -232,7 +231,7 @@
                     <span class="etiqueta">MiniApps</span>
                 </div>
                 <p>Aplicación ligera de uso interno para generar cotizaciones en PDF con conexión a base de datos de clientes.</p>
-                <a href="#" class="btn-ver-mas">Ver detalles del proyecto</a>
+                <a href="proyecto.html?id=cotizador" class="btn-ver-mas">Ver detalles del proyecto</a>
             </div>
 
         </div>
@@ -244,7 +243,6 @@
     </footer>
 
     <script>
-        // Lógica de los Filtros
         const botonesFiltro = document.querySelectorAll('.btn-filtro');
         const tarjetas = document.querySelectorAll('.tarjeta');
 
@@ -267,7 +265,6 @@
             });
         });
 
-        // Lógica de Animación al Scroll (Fade-in)
         const observador = new IntersectionObserver((entradas) => {
             entradas.forEach((entrada) => {
                 if (entrada.isIntersecting) {
