@@ -15,7 +15,7 @@
         .proyecto-header h1 { font-size: 2.5rem; color: #1b263b; margin-bottom: 15px; }
         .etiqueta { display: inline-block; background: #e9ecef; color: #495057; padding: 6px 15px; border-radius: 20px; font-size: 0.9rem; margin: 0 5px; font-weight: 600; margin-bottom: 10px;}
         
-        /* --- NUEVA SECCIÓN DE BOTONES (CALL TO ACTION) --- */
+        /* --- SECCIÓN DE BOTONES --- */
         .acciones-proyecto {
             display: flex;
             justify-content: center;
@@ -36,14 +36,30 @@
             transition: all 0.3s ease;
             text-align: center;
         }
-        .btn-comprar {
-            background-color: #e9ecef; /* Gris porque está inactivo */
+        
+        /* Estado inactivo (Gris) */
+        .btn-comprar-inactivo {
+            background-color: #e9ecef; 
             color: #6c757d;
             cursor: not-allowed;
             border: 2px solid #e9ecef;
         }
+        
+        /* Estado activo (Verde de ventas) */
+        .btn-comprar-activo {
+            background-color: #28a745; 
+            color: white;
+            border: 2px solid #28a745;
+            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+        }
+        .btn-comprar-activo:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(40, 167, 69, 0.4);
+        }
+
         .btn-consultoria {
-            background-color: #007bff; /* Azul vibrante */
+            background-color: #007bff; 
             color: white;
             box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
             border: 2px solid #007bff;
@@ -82,7 +98,7 @@
         </div>
 
         <div class="acciones-proyecto">
-            <a href="#" class="btn-accion btn-comprar" title="Plantilla en construcción">Comprar Plantilla (Próximamente)</a>
+            <a id="btn-comprar" class="btn-accion btn-comprar-inactivo">Comprar Plantilla (Próximamente)</a>
             <a href="https://calendly.com/rubio160391/30min" id="link-calendly" target="_blank" class="btn-accion btn-consultoria">¿Lo adaptamos a tu empresa? Agenda una llamada</a>
         </div>
 
@@ -122,6 +138,7 @@
             document.getElementById('texto-solucion').innerText = datosDelProyecto.solucion;
             document.getElementById('texto-resultado').innerText = datosDelProyecto.resultado;
 
+            // Generar etiquetas
             const contenedorEtiquetas = document.getElementById('contenedor-etiquetas');
             datosDelProyecto.etiquetas.forEach(etiqueta => {
                 const span = document.createElement('span');
@@ -129,6 +146,16 @@
                 span.innerText = etiqueta;
                 contenedorEtiquetas.appendChild(span);
             });
+
+            // Lógica para encender el botón de compra si hay enlace
+            const btnComprar = document.getElementById('btn-comprar');
+            if (datosDelProyecto.linkCompra) {
+                btnComprar.href = datosDelProyecto.linkCompra;
+                btnComprar.innerText = "Comprar Plantilla ($25 USD)";
+                btnComprar.classList.remove('btn-comprar-inactivo');
+                btnComprar.classList.add('btn-comprar-activo');
+                btnComprar.target = "_blank"; // Abre Gumroad en otra pestaña
+            }
 
         } else {
             document.getElementById('contenido-proyecto').classList.add('oculto');
