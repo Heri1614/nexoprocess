@@ -1,17 +1,15 @@
 const baseDeDatos = {
     "gemba": {
         titulo: "Sistema de Acciones Gemba",
-        // Etiquetas reales de tu producto
         etiquetas: ["Dashboard Web", "Gestión Local", "Exportable a CSV"], 
         imagenMockup: "ScreenSistemaGemba.png", 
         videoMockup: "",
+        problema: "Durante los recorridos en piso (Gemba), los supervisores anotan los hallazgos en libretas o archivos de Excel individuales. Esto hace casi imposible visualizar qué tareas están atrasadas y generar reportes rápidos para gerencia.",
+        solucion: "Una plantilla de Action Tracker en formato web (HTML) lista para usarse. No requiere servidores ni internet; funciona localmente en tu navegador. Cuenta con un panel limpio para registrar hallazgos y visualizar el avance general en gráficas automáticas.",
+        resultado: "Control absoluto y visual de tu área operativa de forma inmediata. Administra los tiempos de cierre eficientemente y exporta toda tu base de datos a un archivo CSV compatible con Excel con un solo clic.",
         
-        // Textos adaptados a tu archivo HTML
-        problema: "Durante los recorridos en piso (Gemba), los supervisores anotan los hallazgos en libretas o archivos de Excel desordenados. Esto hace casi imposible visualizar qué tareas están atrasadas, quién es el responsable y generar reportes rápidos para las juntas de gerencia.",
-        
-        solucion: "Un Action Tracker interactivo en formato web (HTML) listo para usarse. No requiere instalación, servidores ni internet; funciona directamente en tu navegador. Cuenta con un panel limpio para registrar hallazgos, asignar prioridades y visualizar el avance general en gráficas automáticas.",
-        
-        resultado: "Control absoluto y visual de tu área operativa. Administra los tiempos de cierre eficientemente y, cuando necesites compartir la información, exporta toda tu base de datos a un archivo CSV compatible con Excel con un solo clic.",
+        // --- AQUÍ ESTÁ TU OFERTA DE ALTO VALOR ---
+        servicioPremium: "Como Servicio Premium de consultoría, ofrezco la adaptación de esta herramienta a la nube de tu empresa. Implementaré una arquitectura usando Microsoft Forms, SharePoint y OneDrive para que todo tu equipo pueda capturar datos de forma simultánea desde sus celulares en tiempo real. Te entregaré el sistema funcionando 'llave en mano' mediante una instalación guiada en vivo.",
         
         linkCompra: "https://nexoprocess.gumroad.com/l/bizzns"
     },
