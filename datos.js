@@ -1,13 +1,18 @@
 const baseDeDatos = {
     "gemba": {
         titulo: "Sistema de Acciones Gemba",
-        etiquetas: ["Microsoft Forms", "SharePoint", "Excel Automatizado"],
-        // Aquí agregamos la ruta de tu nueva imagen:
+        // Etiquetas reales de tu producto
+        etiquetas: ["Dashboard Web", "Gestión Local", "Exportable a CSV"], 
         imagenMockup: "ScreenSistemaGemba.png", 
         videoMockup: "",
-        problema: "El levantamiento de acciones operativas en piso (Gemba) dependía de anotaciones manuales, lo que generaba retrasos en la captura de datos, pérdida de información y nula visibilidad en tiempo real para la toma de decisiones.",
-        solucion: "Se desarrolló un flujo digital donde los operadores ingresan datos vía web usando Microsoft Forms. Esta información alimenta automáticamente una base de datos centralizada en SharePoint, eliminando la transcripción manual.",
-        resultado: "Un archivo de Excel local se conecta a SharePoint y se actualiza al instante, mostrando un Dashboard dinámico. Esto redujo el tiempo de procesamiento de datos a cero y mejoró el seguimiento de las acciones operativas.",
+        
+        // Textos adaptados a tu archivo HTML
+        problema: "Durante los recorridos en piso (Gemba), los supervisores anotan los hallazgos en libretas o archivos de Excel desordenados. Esto hace casi imposible visualizar qué tareas están atrasadas, quién es el responsable y generar reportes rápidos para las juntas de gerencia.",
+        
+        solucion: "Un Action Tracker interactivo en formato web (HTML) listo para usarse. No requiere instalación, servidores ni internet; funciona directamente en tu navegador. Cuenta con un panel limpio para registrar hallazgos, asignar prioridades y visualizar el avance general en gráficas automáticas.",
+        
+        resultado: "Control absoluto y visual de tu área operativa. Administra los tiempos de cierre eficientemente y, cuando necesites compartir la información, exporta toda tu base de datos a un archivo CSV compatible con Excel con un solo clic.",
+        
         linkCompra: "https://nexoprocess.gumroad.com/l/bizzns"
     },
     
